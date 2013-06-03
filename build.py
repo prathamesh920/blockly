@@ -28,7 +28,7 @@
 # been renamed.  The uncompressed file also allows for a faster developement
 # cycle since there is no need to rebuild or recompile, just reload.
 
-import glob, httplib, json, os, re, sys, threading, urllib
+import urllib2, glob, httplib, json, os, re, sys, threading, urllib
 
 def import_path(fullpath):
   """Import a file with full path specification.
@@ -220,11 +220,27 @@ class Gen_compressed(threading.Thread):
   def do_compile(self, params, target_filename, filenames):
     # Send the request to Google.
     headers = { "Content-type": "application/x-www-form-urlencoded" }
-    conn = httplib.HTTPConnection('closure-compiler.appspot.com')
-    conn.request('POST', '/compile', urllib.urlencode(params), headers)
-    response = conn.getresponse()
+    
+    
+
+    # For proxy network like in iit-B
+
+    proxy_support = urllib2.ProxyHandler({"http":"http://10.101.11.108:3128"})
+    opener = urllib2.build_opener(proxy_support)
+    urllib2.install_opener(opener)    
+    url = "http://closure-compiler.appspot.com/compile"
+    compile_req = urllib2.Request(url, urllib.urlencode(params), headers)
+    
+    response=urllib2.urlopen(compile_req)
+    
+    #conn=opener.open(url)
+    #conn = httplib.HTTPConnection('closure-compiler.appspot.com')
+    #conn = httplib.HTTPConnection('http://10.101.11.108',3128)
+    #conn.request('POST','/compile' ,urllib.urlencode(params), headers)
+    #response = conn.getresponse()
+    
     json_str = response.read()
-    conn.close()
+    #conn.close()
 
     # Parse the JSON response.
     json_data = json.loads(json_str)
