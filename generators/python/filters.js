@@ -10,12 +10,12 @@ Blockly.Python.addReservedWords('hpf');
 Blockly.Python.filters_hpf = function() {
 
 	
-	var argument0 = Blockly.Python.valueToCode(this, 'NUM', Blockly.Python.ORDER_MULTIPLICATIVE) || '0';
+	var argument0 = Blockly.Python.valueToCode(this, 'NUM', Blockly.Python.ORDER_ATOMIC) || '0';
 /*	if (isNaN(argument0)){
 		argument0 = 0;
 	}
 */	var code = 'my_hpf(' + argument0 + ')' ;
-	var order = code < 0 ? Blockly.Python.ORDER_UNARY_SIGN: Blockly.Python.ORDER_ATOMIC;
+	var order = code < 0 ? Blockly.Python.ORDER_UNARY_SIGN: Blockly.Python.ORDER_NONE;
 	return[code, order];
 
 };

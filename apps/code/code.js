@@ -94,6 +94,7 @@ function renderContent() {
     content.innerHTML = Blockly.Generator.workspaceToCode('JavaScript');
   } else if (content.id == 'content_python') {
     content.innerHTML = Blockly.Generator.workspaceToCode('Python');
+    window.alert(content.innerHTML);
   }
 }
 
