@@ -46,10 +46,12 @@
       <td height="99%">
         {call .toolbox /}
         <iframe id="content_blocks" src="frame.html?{$ij.frameSrc}"></iframe>
-        <pre id="content_javascript"></pre>
-        <pre id="content_python"></pre>
+        <pre id="content_javascript" name="content_javascript"></pre>
+          <textarea id="content_python" name="content_python" readonly="true" 
+                    style="border-color:lightgrey"; rows=30 cols=150>
+          </textarea>
         <div id="content_xml">
-          <textarea id="textarea_xml"></textarea>
+          <textarea id="textarea_xml" name="textarea_xml"></textarea>
         </div>
       </td>
     </tr>

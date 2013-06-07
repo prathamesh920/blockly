@@ -45,8 +45,21 @@
     }
     var frameSrc = ['en_compressed.js'];
   </script>
+  <style type="text/css">
+      #execute
+      {
+          position: absolute;
+          right: 150px; top: 50px; 
+          background: grey;
+          width:110; height:30;
+          font: bold 14px Arial;
+      }
+  </style>
 </head>
 <body>
-  <script type="text/javascript" src="code.js"></script>
+    <form id="submit" action="server.php" method="POST">
+        <script type="text/javascript" src="code.js"></script>
+        <input id="execute" type="submit" value="Execute"></input>
+    </form>
 </body>
 </html>
